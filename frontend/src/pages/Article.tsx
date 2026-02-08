@@ -6,7 +6,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Spin } from 'antd';
-import { CalendarOutlined, FolderOutlined, TagOutlined, ArrowLeftOutlined, EditOutlined, ClockCircleOutlined, UnorderedListOutlined, EyeOutlined, ShareAltOutlined, CopyOutlined, CheckOutlined, LikeOutlined, LikeFilled, FileTextOutlined, PrinterOutlined, MessageOutlined, UserOutlined, DeleteOutlined, BookOutlined, BookFilled, FontSizeOutlined, ExpandOutlined, CompressOutlined } from '@ant-design/icons';
+import { CalendarOutlined, FolderOutlined, TagOutlined, ArrowLeftOutlined, EditOutlined, ClockCircleOutlined, UnorderedListOutlined, EyeOutlined, ShareAltOutlined, CopyOutlined, CheckOutlined, LikeOutlined, LikeFilled, FileTextOutlined, PrinterOutlined, MessageOutlined, UserOutlined, DeleteOutlined, BookOutlined, BookFilled, ExpandOutlined, CompressOutlined } from '@ant-design/icons';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -147,17 +147,17 @@ export default function ArticlePage() {
         } else if (articleTop + articleHeight <= 0) {
           setReadingProgress(100);
         } else {
-          const progress = Math.min(100, Math.max(0, 
+          const progressValue = Math.min(100, Math.max(0, 
             ((windowHeight - articleTop) / (articleHeight + windowHeight)) * 100
           ));
-          setReadingProgress(Math.round(progress));
-        }
-        
-        // 保存阅读进度到 localStorage
-        if (id) {
-          const progressData = JSON.parse(localStorage.getItem('articleReadProgress') || '{}');
-          progressData[id] = Math.round(progress);
-          localStorage.setItem('articleReadProgress', JSON.stringify(progressData));
+          setReadingProgress(Math.round(progressValue));
+          
+          // 保存阅读进度到 localStorage
+          if (id) {
+            const progressData = JSON.parse(localStorage.getItem('articleReadProgress') || '{}');
+            progressData[id] = Math.round(progressValue);
+            localStorage.setItem('articleReadProgress', JSON.stringify(progressData));
+          }
         }
       }
     };

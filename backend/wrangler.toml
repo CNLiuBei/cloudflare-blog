@@ -14,7 +14,7 @@ ENVIRONMENT = "development"
 [[d1_databases]]
 binding = "DB"
 database_name = "blog-db"
-database_id = "your-database-id-here"  # 部署时替换为实际的数据库 ID
+database_id = "5fc129c5-1cc4-4d1f-84d2-499dd985c41e"  # 生产数据库 ID
 
 # R2 存储桶绑定 (需求 12.3)
 [[r2_buckets]]
@@ -29,7 +29,7 @@ vars = { ENVIRONMENT = "production" }
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "blog-db"
-database_id = "your-production-database-id-here"  # 部署时替换为实际的数据库 ID
+database_id = "5fc129c5-1cc4-4d1f-84d2-499dd985c41e"  # 生产数据库 ID
 
 # 生产环境 R2 存储桶
 [[env.production.r2_buckets]]

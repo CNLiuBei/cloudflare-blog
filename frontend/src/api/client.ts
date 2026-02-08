@@ -82,7 +82,7 @@ export function isAuthenticated(): boolean {
 }
 
 // API 基础 URL（开发环境使用代理，生产环境使用实际 URL）
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cloudflare-blog-api.707209999.workers.dev/api';
 
 /**
  * 创建 Axios 实例
