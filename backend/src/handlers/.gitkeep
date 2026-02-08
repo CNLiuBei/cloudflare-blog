@@ -1,0 +1,9 @@
+# 路由处理器目录
+# 此目录包含所有 API 端点的处理器函数
+# 
+# 计划文件:
+# - auth.ts: 登录认证处理器
+# - articles.ts: 文章 CRUD 处理器
+# - categories.ts: 分类管理处理器
+# - tags.ts: 标签管理处理器
+# - upload.ts: 文件上传处理器

@@ -1,0 +1,5 @@
+# 数据模型目录
+# 此目录包含所有数据类型定义
+# 
+# 计划文件:
+# - types.ts: 所有实体类型定义 (Article, Category, Tag, Admin 等)

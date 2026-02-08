@@ -1,0 +1,57 @@
+# Cloudflare Workers 配置文件
+name = "cloudflare-blog-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# 开发环境配置
+[vars]
+ENVIRONMENT = "development"
+# JWT_SECRET 仅用于本地开发，生产环境必须使用 wrangler secret
+# 本地开发时可以设置环境变量或使用 .dev.vars 文件
+
+# D1 数据库绑定 (需求 12.2)
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-db"
+database_id = "your-database-id-here"  # 部署时替换为实际的数据库 ID
+
+# R2 存储桶绑定 (需求 12.3)
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "blog-images"
+
+# 生产环境配置
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+# 生产环境 D1 数据库
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "blog-db"
+database_id = "your-production-database-id-here"  # 部署时替换为实际的数据库 ID
+
+# 生产环境 R2 存储桶
+[[env.production.r2_buckets]]
+binding = "BUCKET"
+bucket_name = "blog-images"
+
+# ==================== 安全配置说明 ====================
+# 
+# 1. JWT_SECRET 配置（必须）
+#    生产环境必须使用 Cloudflare Secrets：
+#    $ wrangler secret put JWT_SECRET --env production
+#    
+#    本地开发可以创建 .dev.vars 文件：
+#    JWT_SECRET=your-local-dev-secret-key
+#
+# 2. R2 公开访问配置
+#    如需公开访问上传的图片，需要配置 R2 自定义域名：
+#    https://developers.cloudflare.com/r2/buckets/public-buckets/
+#
+# 3. 部署前检查清单
+#    - [ ] 替换 database_id 为实际的 D1 数据库 ID
+#    - [ ] 设置 JWT_SECRET secret
+#    - [ ] 配置 R2 存储桶公开访问（如需要）
+#    - [ ] 配置自定义域名（可选）
+# ==================================================
